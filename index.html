@@ -222,6 +222,15 @@
     }
     .ppt-grid { display: block; }
     .muted { color: var(--muted); }
+    mjx-container {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    mjx-container[display="true"] {
+      margin: 14px 0 !important;
+      padding: 6px 0;
+    }
     @media (max-width: 900px) {
       main { display: block; }
       aside { position: static; max-height: none; margin-bottom: 22px; }
@@ -242,6 +251,22 @@
       .note-card { break-inside: avoid; }
     }
   </style>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <header>
