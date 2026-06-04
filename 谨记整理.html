@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>谨记 - 原文图文整理</title>
+  <style>
+    :root {
+      --bg: #f6f6f2;
+      --paper: #fffefa;
+      --ink: #202124;
+      --muted: #707174;
+      --line: #deded6;
+      --soft: #eef5f3;
+      --accent: #2b6f73;
+      --accent-2: #a35820;
+      --code: #f0f1ef;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 38px 20px 24px;
+    }
+    .wrap { max-width: 1160px; margin: 0 auto; }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 0;
+      max-width: 820px;
+      color: var(--muted);
+    }
+    .top-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .top-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 5px 12px;
+      color: var(--ink);
+      background: #fff;
+      font-size: 14px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+      gap: 22px;
+      padding: 24px 20px 72px;
+    }
+    aside {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    aside h2 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      border: 0;
+      padding: 0;
+    }
+    .toc {
+      display: grid;
+      gap: 4px;
+    }
+    .toc a {
+      display: block;
+      padding: 6px 8px;
+      border-radius: 5px;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .toc a:hover {
+      background: var(--soft);
+      text-decoration: none;
+    }
+    section.panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 22px;
+    }
+    section.panel > h2 {
+      margin: 0 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 24px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .note-card {
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr);
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .note-card:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .note-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 800;
+      border: 1px solid #d2e5e1;
+    }
+    .note-body h2, .note-body h3, .note-body h4, .note-body h5, .note-body h6 {
+      margin: 18px 0 8px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    .note-body h2 { font-size: 22px; }
+    .note-body h3 { font-size: 20px; }
+    .note-body h4 { font-size: 18px; }
+    .note-body p { margin: 0 0 10px; }
+    .note-body ul, .note-body ol { margin: 8px 0 12px; padding-left: 24px; }
+    .note-body li { margin: 4px 0; }
+    .note-body hr {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 16px 0;
+    }
+    code {
+      background: var(--code);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+    pre {
+      overflow-x: auto;
+      background: #202124;
+      color: #f7f7f4;
+      padding: 14px;
+      border-radius: 8px;
+      line-height: 1.55;
+    }
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+    .math-block {
+      white-space: pre-wrap;
+      overflow-x: auto;
+      background: #f8f8f5;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+    .image-row { display: block; margin: 14px 0; }
+    .note-image, .ppt-image { margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+    p .note-image { display: block; width: 100%; margin: 14px 0; }
+    .note-image img, .ppt-image img { display: block; width: 100%; height: auto; background: #fafafa; }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+    th, td {
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f1f5f4; }
+    tr:last-child td { border-bottom: 0; }
+    .ppt-slide {
+      border-top: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    .ppt-slide:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .ppt-slide h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+    .ppt-grid { display: block; }
+    .muted { color: var(--muted); }
+    @media (max-width: 900px) {
+      main { display: block; }
+      aside { position: static; max-height: none; margin-bottom: 22px; }
+      .toc { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      header { padding-top: 28px; }
+      section.panel { padding: 16px; }
+      .note-card { grid-template-columns: 1fr; gap: 8px; }
+      .note-num { width: 38px; height: 38px; }
+      .image-row, .ppt-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      header, aside { display: none; }
+      main { display: block; padding: 0; }
+      section.panel { border: 0; }
+      .note-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>谨记：原文图文整理</h1>
+      <p class="subtitle">本版保持 <strong>谨记.md</strong> 原文顺序和原文表述，不提炼、不改写、不合并；只把文字、公式、代码块和图片整理成更适合阅读的 HTML 笔记。PPTX 图片笔记按页附在后面。</p>
+      <div class="top-links">
+        <a href="谨记.md">原始 Markdown</a>
+        <a href="谨记.pptx">原始 PPTX</a>
+        <a href="#ppt-notes">PPT 图片笔记</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <aside>
+      <h2>原文条目</h2>
+      <div class="toc">
+        <a href="#note-1">1. 这种题怎么做? [图片]</a><a href="#note-2">2. [图片]</a><a href="#note-3">3. 二分查找:mid是向下取整.</a><a href="#note-4">4. [图片]</a><a href="#note-5">5. [图片]</a><a href="#note-6">6. [图片]</a><a href="#note-7">7. 队列中:</a><a href="#note-8">8. [图片]</a><a href="#note-9">9. [图片]</a><a href="#note-10">10. [图片]</a><a href="#note-11">11. [图片]</a><a href="#note-12">12. 树的三种存储结构</a><a href="#note-13">13. 生成树?</a><a href="#note-14">14. ### **$m$ 叉树的通用定理推导过程**</a><a href="#note-15">15. 在数据结构考试中，求解最小生成树（Minimum Spanning Tree, MST）最经典且...</a><a href="#note-16">16. 二叉排序树结点的删除:</a><a href="#note-17">17. [图片]</a><a href="#note-18">18. [图片]</a><a href="#note-19">19. [图片][图片]</a><a href="#note-20">20. 队列允许插入的一段称为队尾 允许删除的一端称为队头</a><a href="#note-21">21. 后缀表达式处理括号与指数:指数转化为^运算符,括号自己安排顺序即可</a><a href="#note-22">22. 平衡二叉树的旋转操作</a><a href="#note-23">23. 在考场上，**单纯靠“人脑模拟代码流程”确实极其容易想歪**。因为递归的调用栈很深，大脑在模拟回...</a><a href="#note-24">24. 先序 中序 后序 知道哪几个可以确定该二叉树?</a><a href="#note-25">25. 稀疏矩阵的压缩存储</a><a href="#note-26">26. 求最短路径两大算法: Djikstra Floyd</a><a href="#note-27">27. [图片]</a><a href="#note-28">28. [图片]</a><a href="#note-29">29. 错题[图片]</a><a href="#note-30">30. 错题[图片]</a><a href="#note-31">31. 简单选择排序:直接交换 插入排序:插入,不是交换位置</a><a href="#note-32">32. 栈算法计算拓扑序列:</a><a href="#note-33">33. 循环队列: 元素个数: (rear-front+m)%m</a><a href="#note-34">34. [图片]</a><a href="#note-35">35. 查找方法对比</a><a href="#note-36">36. 一些B-树:</a><a href="#note-37">37. [图片]</a><a href="#note-38">38. AOE网中的关键路径:它是从起点到终点“耗时最长”的路径，但它决定了整个项目“最快能完工”的时间...</a><a href="#note-39">39. *luminous*</a><a href="#note-40">40. 定义一个抽象数据类型</a><a href="#note-41">41. 循环队列队满:(r + 1)%m = f</a><a href="#note-42">42. [图片]</a><a href="#note-43">43. hash表处理冲突的几种方法:</a><a href="#note-44">44. [图片]</a><a href="#note-45">45. 算法可以没有输入 但是必须有输出</a><a href="#note-46">46. 还是旋转:太理解了！教科书上那种“以某某为轴左旋转”、“顺时针/逆时针”的说法确实非常反人类。考...</a><a href="#note-47">47. 有向无环图的关键路径的算法设计思路:</a><a href="#note-48">48. n个结点的无向图中:</a><a href="#note-49">49. 线索二叉树</a><a href="#note-50">50. 判断序列是不是堆? 计算下标即可. 2i 2i+1</a><a href="#note-51">51. [图片]</a><a href="#note-52">52. 希尔排序的流程概述</a><a href="#note-53">53. 空条目</a>
+      </div>
+    </aside>
+
+    <div>
+      <section class="panel">
+        <h2>Markdown 原文图文笔记</h2>
+        
+            <article id="note-1" class="note-card">
+              <div class="note-num">1</div>
+              <div class="note-body"><p>这种题怎么做? <figure class="note-image"><a href="image.png" target="_blank"><img src="image.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-1.png" target="_blank"><img src="image-1.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-2.png" target="_blank"><img src="image-2.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-2" class="note-card">
+              <div class="note-num">2</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-3.png" target="_blank"><img src="image-3.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-3" class="note-card">
+              <div class="note-num">3</div>
+              <div class="note-body"><p>二分查找:mid是向下取整.<br><figure class="note-image"><a href="image-5.png" target="_blank"><img src="image-5.png" alt="alt text" loading="lazy"></a></figure><br>另外注意, 快速排序一趟和全部的空间复杂度的区别</p></div>
+            </article>
+            
+            <article id="note-4" class="note-card">
+              <div class="note-num">4</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-6.png" target="_blank"><img src="image-6.png" alt="alt text" loading="lazy"></a></figure><br>先求出来列数 再数格子即可, 一个格子是一个位置</p></div>
+            </article>
+            
+            <article id="note-5" class="note-card">
+              <div class="note-num">5</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-7.png" target="_blank"><img src="image-7.png" alt="alt text" loading="lazy"></a></figure>
+<figure class="note-image"><a href="image-8.png" target="_blank"><img src="image-8.png" alt="alt text" loading="lazy"></a></figure>
+<figure class="note-image"><a href="image-11.png" target="_blank"><img src="image-11.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-6" class="note-card">
+              <div class="note-num">6</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-9.png" target="_blank"><img src="image-9.png" alt="alt text" loading="lazy"></a></figure>
+<figure class="note-image"><a href="image-10.png" target="_blank"><img src="image-10.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-7" class="note-card">
+              <div class="note-num">7</div>
+              <div class="note-body"><p>队列中:<br>   头指针:先插入的元素所在位置<br>   尾指针:后插入的元素所在位置</p></div>
+            </article>
+            
+            <article id="note-8" class="note-card">
+              <div class="note-num">8</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-13.png" target="_blank"><img src="image-13.png" alt="alt text" loading="lazy"></a></figure></div>
+<h4><strong>第 4 题：快速排序的时间复杂度（纠错与记忆）</strong></h4>
+<p><strong>注意</strong>：试卷上铅笔写的答案（最坏 $O(n)$，平均 $O(\log_2 n)$）是<strong>错误</strong>的。请千万不要这样记忆。</p>
+<h5><strong>1. 正确答案</strong></h5>
+<ul><li>快速排序的<strong>最坏</strong>时间复杂度为：<strong>$O(n^2)$</strong></li>
+<li>快速排序的<strong>平均</strong>时间复杂度为：<strong>$O(n \log_2 n)$</strong> （或写成 $O(n \log n)$）</li></ul>
+<hr>
+<h5><strong>2. 如何理解与记忆？（回答图中的“如何理解记忆”）</strong></h5>
+<p>快速排序的核心思想是<strong>分治法</strong>：每次选一个“基准元素（Pivot）”，把比它小的放左边，比它大的放右边，然后递归。</p>
+<h6><strong>① 为什么平均是 $O(n \log_2 n)$？（最理想状态）</strong></h6>
+<ul><li><strong>理解</strong>：如果每次“基准元素”都能完美地把数组<strong>对半分</strong>，那么递归树的高度就是 $\log_2 n$。</li>
+<li>在递归树的每一层，我们都需要对所有元素进行一次比较和移动，耗时是 $O(n)$。</li>
+<li><strong>计算</strong>：$\text{树的高度} \times \text{每层的工作量} = \log_2 n \times n = O(n \log_2 n)$。</li></ul>
+<h6><strong>② 为什么最坏是 $O(n^2)$？（最糟糕状态）</strong></h6>
+<ul><li><strong>理解</strong>：如果输入的序列<strong>已经是有序的（升序或降序）</strong>，且我们每次都雷打不动地选第一个元素当基准。</li>
+<li>这时，每次划分都极其不均匀：一边是 $0$ 个元素，另一边是 $n-1$ 个元素。</li>
+<li>此时递归树退化成了一条<strong>单支树（类似于单链表）</strong>，树的高度变成了 $n$。</li>
+<li><strong>计算</strong>：第一层比较 $n$ 次，第二层 $n-1$ 次……最后一层 $1$ 次。<br>$$n + (n-1) + (n-2) + \dots + 1 = \frac{n(n+1)}{2} = O(n^2)$$</li>
+<li><strong>记忆口诀</strong>：<strong>快排“怕”有序</strong>。遇到有序序列，快排就退化成了冒泡排序，变成 $O(n^2)$。</li></ul>
+<hr>
+<h4><strong>第 5 题：二叉树的结点关系与空指针域计算</strong></h4>
+<p>这道题包含两个空格，考察的是二叉树的两个经典定理。</p>
+<h5><strong>第一空：度数为 2 的结点数</strong></h5>
+<ul><li><strong>定理</strong>：在任意二叉树中，叶子结点数（度为 0 的结点数 $N_0$）总是比度为 2 的结点数 $N_2$ 多 1 个。</li>
+<li><strong>公式</strong>：$$N_2 = N_0 - 1$$</li>
+<li><strong>证明过程</strong>（可以不记，但有助于理解）：<br>设总结点数为 $N$，总边数为 $B$。</li></ul>
+<ol><li>从“结点”角度看：$N = N_0 + N_1 + N_2$</li>
+<li>从“边”的角度看，除了根结点外，每个结点上方都有一条边相连，所以：$B = N - 1$</li>
+<li>边是由度为 1 和度为 2 的结点发射出来的：$B = N_1 + 2N_2$</li>
+<li>联立以上等式：$N_1 + 2N_2 = N_0 + N_1 + N_2 - 1 \implies N_2 = N_0 - 1$。</li></ol>
+<ul><li><strong>答案</strong>：<strong>$N_0 - 1$</strong></li></ul>
+<hr>
+<h5><strong>第二空：二叉链表中的空指针域个数</strong></h5>
+<ul><li><strong>结论</strong>：若二叉树有 $N$ 个结点，则采用二叉链表存储时，必有 <strong>$N + 1$</strong> 个空指针域。</li>
+<li><strong>如何表示成题目要求的参数</strong>：<br>因为 $N = N_0 + N_1 + N_2$，且我们已知 $N_2 = N_0 - 1$。<br>代入得：$N = N_0 + N_1 + (N_0 - 1) = 2N_0 + N_1 - 1$。<br>所以空指针个数 $N + 1 = \mathbf{2N_0 + N_1}$。</li></ul>
+<ul><li><strong>直观理解法（极力推荐此记忆法）</strong>：</li>
+<li><strong>度为 0 的结点（叶子 $N_0$）</strong>：左右指针都为空，贡献 $2 \times N_0$ 个空指针。</li>
+<li><strong>度为 1 的结点（$N_1$）</strong>：只有一个孩子，另一个指针为空，贡献 $1 \times N_1$ 个空指针。</li>
+<li><strong>度为 2 的结点（$N_2$）</strong>：左右都有孩子，贡献 $0$ 个空指针。</li>
+<li>累加起来，空指针的总数就是：<strong>$2N_0 + N_1$</strong>。</li></ul>
+<ul><li><strong>答案</strong>：<strong>$2N_0 + N_1$</strong>（或写成 <strong>$N + 1$</strong>，其中 $N$ 为总结点数）</li></ul></div>
+            </article>
+            
+            <article id="note-9" class="note-card">
+              <div class="note-num">9</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-14.png" target="_blank"><img src="image-14.png" alt="alt text" loading="lazy"></a></figure><br>    我建立的堆为什么不对?<br>这是一个在学习数据结构时非常经典且容易混淆的错误。</p>
+<p>你建立的堆之所以不对，是因为你使用了<strong>“逐个插入法”（Insertion Method）</strong>，而题目要求的是使用<strong>“筛选法”（Sifting/Filtering Method，也称自底向上建堆法）</strong>。</p>
+<p>虽然你最后画出的二叉树确实是一个合法的最小堆，但<strong>建堆的过程和方法错了</strong>，导致最终得到的序列顺序与标准答案不一致。</p>
+<hr>
+<h4><strong>为什么你的方法是“插入法”？</strong></h4>
+<p>如果我们把原始序列 <code>(55, 63, 44, 38, 75, 80, 31, 56)</code> 按照<strong>一个接一个插入</strong>到空堆中的方式：</p>
+<ol><li>插入 55</li>
+<li>插入 63</li>
+<li>插入 44 $\rightarrow$ 调整</li>
+<li>插入 38 $\rightarrow$ 调整</li></ol>
+<p>…… 依此类推。<br>这样最终确实会得到你写的序列：<code>(31, 44, 38, 56, 75, 80, 55, 63)</code>。但这不是<strong>筛选法</strong>。</p>
+<hr>
+<h4><strong>什么是“筛选法”（自底向上建堆）？</strong></h4>
+<p>筛选法的核心是：<strong>先将所有初始数据直接排成一棵完全二叉树，然后从“最后一个非叶子结点”开始，自底向上、往下方进行筛选调整。</strong></p>
+<p>我们以建立<strong>最小堆</strong>为例，演示正确的筛选法步骤：</p>
+<h5><strong>第一步：直接画出初始完全二叉树</strong></h5>
+<p>按照原始序列 <code>(55, 63, 44, 38, 75, 80, 31, 56)</code> 的顺序，直接填入二叉树中（括号内为数组下标）：</p>
+<pre><code>            55 [1]
+          /        \
+       63 [2]       44 [3]
+      /    \        /    \
+    38 [4] 75 [5] 80 [6] 31 [7]
+   /
+ 56 [8]</code></pre>
+<h5><strong>第二步：找到最后一个非叶子结点</strong></h5>
+<p>总节点数 $n = 8$，最后一个非叶子结点的下标为 $\lfloor 8/2 \rfloor = 4$，即值为 <strong>38</strong> 的结点。我们从这个结点开始，<strong>倒序（下标从 4 到 1）</strong>进行向下筛选。</p>
+<hr>
+<h5><strong>第三步：逐步向下调整（筛选）</strong></h5>
+<h6><strong>1. 调整下标为 4 的结点（值为 38）</strong></h6>
+<ul><li>它的孩子只有 56。因为 $38 &lt; 56$，符合最小堆性质，无需调整。</li></ul>
+<h6><strong>2. 调整下标为 3 的结点（值为 44）</strong></h6>
+<ul><li>它的孩子有 80 和 31。</li>
+<li>两个孩子中较小的是 <strong>31</strong>。</li>
+<li>因为 $44 &gt; 31$，所以将 44 与 31 交换。</li>
+<li>此时右子树变为：以 31 为父结点，80 和 44 为左右孩子。</li>
+<li>调整后的局部树：</li></ul>
+<pre><code>            55
+          /    \
+       63        31
+      /  \      /  \
+    38    75  80    44
+   /
+ 56</code></pre>
+<h6><strong>3. 调整下标为 2 的结点（值为 63）</strong></h6>
+<ul><li>它的孩子有 38 和 75。较小的是 <strong>38</strong>。</li>
+<li>因为 $63 &gt; 38$，将 63 与 38 交换。</li>
+<li>交换后，63 来到了下标 4 的位置。它的孩子是 56。</li>
+<li>因为 $63 &gt; 56$，继续将 63 与 56 交换。</li>
+<li>调整后的整体树：</li></ul>
+<pre><code>            55
+          /    \
+       38        31
+      /  \      /  \
+    56    75  80    44
+   /
+ 63</code></pre>
+<h6><strong>4. 调整下标为 1 的结点（根结点，值为 55）</strong></h6>
+<ul><li>它的孩子有 38 和 31。较小的是 <strong>31</strong>（右孩子）。</li>
+<li>因为 $55 &gt; 31$，将 55 与 31 交换。</li>
+<li>交换后，55 来到了原 31 的位置（下标 3）。它的孩子是 80 和 44。</li>
+<li>两个孩子中较小的是 <strong>44</strong>。</li>
+<li>因为 $55 &gt; 44$，继续将 55 与 44 交换。</li>
+<li>调整后的最终树：</li></ul>
+<pre><code>            31
+          /    \
+       38        44
+      /  \      /  \
+    56    75  80    55
+   /
+ 63</code></pre>
+<hr>
+<h4><strong>最终答案</strong></h4>
+<h5><strong>如果你建立的是最小堆（Min-Heap）：</strong></h5>
+<p>按层次遍历最终树，正确的初始堆序列为：<br>$$\mathbf{(31, 38, 44, 56, 75, 80, 55, 63)}$$<br>*(对比你的答案 <code>31, 44, 38...</code>，可以看到根结点的左右孩子顺序正好反了，这就是因为调整根结点 55 时，它必须与更小的右孩子 31 交换，从而保留了左孩子 38，而你通过插入法把 44 挤到了左边)*</p>
+<h5><strong>如果你建立的是最大堆（Max-Heap）：</strong></h5>
+<p>如果学校教材默认是用最大堆，用同样的筛选法步骤，最后得到的序列应为：<br>$$\mathbf{(80, 75, 55, 56, 63, 44, 31, 38)}$$</p>
+<h4><strong>总结记忆</strong></h4>
+<ul><li><strong>逐个插入法</strong>：从空树开始，每插入一个节点都<strong>向上（Sift Up）</strong>调整。</li>
+<li><strong>筛选法（考试常考）</strong>：先排满整棵树，然后从最后一非叶子节点开始，<strong>向下（Sift Down）</strong>调整。</li></ul></div>
+            </article>
+            
+            <article id="note-10" class="note-card">
+              <div class="note-num">10</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-15.png" target="_blank"><img src="image-15.png" alt="alt text" loading="lazy"></a></figure><br>    注意ASL怎么算即可. ASL = (1\*1 + 2\*2 + 3\*4 + 4\*2)/9</p></div>
+            </article>
+            
+            <article id="note-11" class="note-card">
+              <div class="note-num">11</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-16.png" target="_blank"><img src="image-16.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-12" class="note-card">
+              <div class="note-num">12</div>
+              <div class="note-body"><p>树的三种存储结构<br><figure class="note-image"><a href="image-18.png" target="_blank"><img src="image-18.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-19.png" target="_blank"><img src="image-19.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-20.png" target="_blank"><img src="image-20.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-13" class="note-card">
+              <div class="note-num">13</div>
+              <div class="note-body"><p>生成树?<br><figure class="note-image"><a href="image-21.png" target="_blank"><img src="image-21.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-14" class="note-card">
+              <div class="note-num">14</div>
+              <div class="note-body"><h4><strong>$m$ 叉树的通用定理推导过程</strong></h4>
+<h5><strong>i. 从“结点”角度看</strong></h5>
+<p>整棵树的总结点数 $N$，是所有不同度数结点数的总和：<br>$$N = N_0 + N_1 + N_2 + N_3 + \dots + N_m$$</p>
+<h5><strong>ii. 从“边”的角度看（第一种算边方法）</strong></h5>
+<p>除了根结点外，树中的每一个结点上方都对应着唯一的一条边（指向它的双亲）。所以总边数 $B$ 为：<br>$$B = N - 1$$</p>
+<h5><strong>iii. 从“度”的角度看（第二种算边方法）</strong></h5>
+<p>边是由每个结点向下发射出来的。</p>
+<ul><li>度数为 $0$ 的结点发射出 $0$ 条边；</li>
+<li>度数为 $1$ 的结点发射出 $1$ 条边；</li>
+<li>度数为 $2$ 的结点发射出 $2$ 条边；</li>
+<li>……</li>
+<li>度数为 $m$ 的结点发射出 $m$ 条边。</li></ul>
+<p>所以，总边数 $B$ 还可以表示为：<br>$$B = 0 \cdot N_0 + 1 \cdot N_1 + 2 \cdot N_2 + 3 \cdot N_3 + \dots + m \cdot N_m$$<br>简化后为：<br>$$B = N_1 + 2N_2 + 3N_3 + \dots + m \cdot N_m$$</p>
+<h5><strong>iv. 联立以上等式</strong></h5>
+<p>因为两种方法算出来的总边数 $B$ 必须相等，所以：<br>$$(N_1 + 2N_2 + 3N_3 + \dots + m \cdot N_m) = N - 1$$</p>
+<p>我们将第一步的 $N = N_0 + N_1 + N_2 + \dots + N_m$ 代入等式右边：<br>$$N_1 + 2N_2 + 3N_3 + \dots + m \cdot N_m = (N_0 + N_1 + N_2 + N_3 + \dots + N_m) - 1$$</p>
+<p>现在，我们把等式两边相同的项消掉（两边同时减去 $N_1 + N_2 + N_3 + \dots + N_m$）：</p>
+<ul><li>左边：所有的系数都减去 1（例如 $2N_2$ 变成 $1N_2$，$3N_3$ 变成 $2N_3$，依次类推）。</li>
+<li>右边：只剩下 $N_0 - 1$。</li></ul>
+<p>最后得到的<strong>通用定理公式</strong>为：<br>$$N_0 - 1 = N_2 + 2N_3 + 3N_4 + \dots + (m-1)N_m$$</p>
+<p>移项整理，得到叶子结点数 $N_0$ 的通用表达式：<br>$$\mathbf{N_0 = 1 + \sum_{i=2}^{m} (i - 1)N_i}$$</p>
+<hr>
+<h4><strong>如何理解和记忆这个推广公式？</strong></h4>
+<p>我们把具体数值代入进去看，就会发现它非常工整：</p>
+<ul><li><strong>对于二叉树 ($m = 2$)</strong>：<br>$$N_0 = 1 + (2-1)N_2 \implies N_0 = 1 + N_2 \implies N_2 = N_0 - 1$$<br>（这就是你之前做的那道题！）</li></ul>
+<ul><li><strong>对于三叉树 ($m = 3$)</strong>：<br>$$N_0 = 1 + N_2 + 2N_3$$<br>（叶子结点数，等于 $1$ 加上“度为2的结点数”，加上“$2$ 倍度为3的结点数”）</li></ul>
+<ul><li><strong>对于四叉树 ($m = 4$)</strong>：<br>$$N_0 = 1 + N_2 + 2N_3 + 3N_4$$</li></ul>
+<p><strong>考前记忆窍门</strong>：<br>度数为 $i$ 的结点，它对叶子结点的“贡献权重”就是 <strong>$(i-1)$</strong>。你只需要记住每个结点的系数是 <strong>“它的度数减 1”</strong>，最后再统一加上最开始的根结点（那额外的 $+1$）即可。</p></div>
+            </article>
+            
+            <article id="note-15" class="note-card">
+              <div class="note-num">15</div>
+              <div class="note-body"><p>在数据结构考试中，求解最小生成树（Minimum Spanning Tree, MST）最经典且最常考的算法有两个：<strong>普里姆（Prim）算法</strong>和<strong>克鲁斯卡尔（Kruskal）算法</strong>。</p>
+<h4>1. 普里姆（Prim）算法——“加点法”</h4>
+<ul><li><strong>基本思想</strong>：<br>从图中任意一个顶点开始，每次选择一个距离当前生成树最近的、且尚未加入生成树的顶点，将其与对应的边加入到生成树中，直到所有顶点都被纳入。</li>
+<li><strong>时间复杂度</strong>：</li>
+<li>使用邻接矩阵实现：$O(|V|^2)$，其中 $|V|$ 为顶点数。</li>
+<li>时间复杂度与边数 $|E|$ 无关。</li>
+<li><strong>适用场景</strong>：<br>适合<strong>稠密图</strong>（边较多的图）。</li></ul>
+<h4>2. 克鲁斯卡尔（Kruskal）算法——“加边法”</h4>
+<ul><li><strong>基本思想</strong>：<br>将图中所有的边按权值从小到大排序。每次选择一条权值最小的边，如果这条边加入后不会与已选择的边形成<strong>回路（环）</strong>，则将其加入生成树中，直到选择了 $|V|-1$ 条边。<br>*(注：考试中判断是否成环通常在代码中通过<strong>并查集</strong>来实现。)*</li>
+<li><strong>时间复杂度</strong>：<br>$O(|E| \log |E|)$，其中 $|E|$ 为边数。时间主要消耗在对边的排序上。</li>
+<li><strong>适用场景</strong>：<br>适合<strong>稀疏图</strong>（边较少的图）。</li></ul>
+<p>界园志异说: <figure class="note-image"><a href="image-22.png" target="_blank"><img src="image-22.png" alt="alt text" loading="lazy"></a></figure><figure class="note-image"><a href="image-23.png" target="_blank"><img src="image-23.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-16" class="note-card">
+              <div class="note-num">16</div>
+              <div class="note-body"><p>二叉排序树结点的删除:<br>在二叉排序树（BST）中删除一个结点，其核心规则是：<strong>删除该结点后，整棵树必须依然保持二叉排序树的性质</strong>（即：任意结点的左子树中所有结点的值 &lt; 该结点的值 &lt; 其右子树中所有结点的值）。</p>
+<p>为了实现这一点，删除操作通常根据被删除结点的子树数量，分为以下 <strong>三种情况</strong>：</p>
+<hr>
+<h4>情况一：被删除结点是叶子结点（没有子树）</h4>
+<ul><li><strong>规则</strong>：直接删除。</li>
+<li><strong>操作</strong>：将该结点的双亲结点指向它的指针域直接置为 <code>NULL</code>，然后释放该结点的内存。</li></ul>
+<h4>情况二：被删除结点只有一个孩子（只有左子树或只有右子树）</h4>
+<ul><li><strong>规则</strong>：子承父业（独子继承）。</li>
+<li><strong>操作</strong>：用该结点的唯一孩子结点直接替换该结点。</li>
+<li>例如：若被删结点 $A$ 只有左孩子 $B$，则让 $A$ 的双亲结点直接指向 $B$，然后释放 $A$ 的内存。</li></ul>
+<h4>情况三：被删除结点有两个孩子（既有左子树又有右子树）—— *核心考点*</h4>
+<ul><li><strong>规则</strong>：寻找“替身”来代替它，然后删除“替身”。</li>
+<li><strong>操作</strong>：<br>为了尽量不破坏树的结构，我们需要在整棵树中找到最接近被删结点值的结点来作为“替身”。这个替身只有两种选择：</li></ul>
+<ol><li><strong>前驱（Predecessor）</strong>：<strong>左子树中的最大结点</strong>（即沿着左子树的右指针一直向下找，直到没有右孩子的结点）。</li>
+<li><strong>后继（Successor）</strong>：<strong>右子树中的最小结点</strong>（即沿着右子树的左指针一直向下找，直到没有左孩子的结点）。</li></ol>
+<p>    <strong>标准步骤（以选择“后继”为例）</strong>：</p>
+<ol><li>找到被删结点 $A$ 的右子树中的最左下结点 $S$（后继）。</li>
+<li>将 $S$ 的值复制到 $A$ 中（此时 $A$ 的旧值被覆盖，相当于被删除了）。</li>
+<li>此时问题转化为：删除结点 $S$。因为 $S$ 是最左下的结点，它<strong>一定没有左孩子</strong>，所以删除 $S$ 的操作直接退化为了<strong>情况一</strong>（它是叶子）或<strong>情况二</strong>（它只有右孩子），直接处理即可。</li>
+<li>选前驱或者后继都可以.</li></ol></div>
+            </article>
+            
+            <article id="note-17" class="note-card">
+              <div class="note-num">17</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-24.png" target="_blank"><img src="image-24.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-18" class="note-card">
+              <div class="note-num">18</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-25.png" target="_blank"><img src="image-25.png" alt="alt text" loading="lazy"></a></figure>
+<figure class="note-image"><a href="image-26.png" target="_blank"><img src="image-26.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-19" class="note-card">
+              <div class="note-num">19</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-27.png" target="_blank"><img src="image-27.png" alt="alt text" loading="lazy"></a></figure><figure class="note-image"><a href="image-28.png" target="_blank"><img src="image-28.png" alt="alt text" loading="lazy"></a></figure><br>这组题（第 6 题到第 15 题）你做得非常好，绝大多数都答对了！</p>
+<p>有 <strong>1 道题确定做错（第 11 题）</strong>，还有 <strong>1 道题的手写字母有些模糊（第 14 题）</strong>，可能是个高频易错坑。</p>
+<p>下面是详细的批改和解析：</p>
+<hr>
+<h4><strong>第 11 题：求海量数据中的前 $k$ 个最大元素（Top-K 问题）</strong></h4>
+<ul><li><strong>解析（重点，这是考研/期末高频考点）：</strong></li>
+<li>题目要求：在 10000 个元素中，<strong>仅</strong>求出最大的 10 个元素。</li>
+<li><strong>为什么选 堆排序（A）？</strong></li>
+<li>我们可以建立一个大小仅为 10 的<strong>小顶堆</strong>。</li>
+<li>遍历这 10000 个元素，每次与堆顶元素比较，若比堆顶大，则替代堆顶并调整堆。</li>
+<li>遍历结束后，堆里的 10 个元素就是最大的 10 个。</li>
+<li>时间复杂度为 $O(N \log k)$（即 $10000 \log_2 10$），速度极快，且<strong>省空间</strong>。</li>
+<li><strong>为什么不选 快速排序（C）？</strong></li>
+<li>快速排序必须对全部 10000 个元素进行完整排序，时间复杂度是 $O(N \log N)$（即 $10000 \log_2 10000$）。在只需要前 10 个元素的情况下，全排序造成了极大的时间浪费。</li></ul>
+<hr>
+<h4><strong>第 14 题：散列表（哈希表）的同义词概念</strong></h4>
+<ul><li><strong>正确答案：</strong> <strong>C. 其散列地址相同</strong></li>
+<li><strong>批改提示：</strong> 你的手写字母看起来有些像 A，也有些像 C。如果是 A，那就落入了经典陷阱：</li>
+<li><strong>陷阱解析：</strong></li>
+<li><strong>同义词（Synonyms）的定义</strong>：具有<strong>不同键值</strong>（Key）的元素，经过散列函数计算后，得到了<strong>相同的散列地址</strong>（即哈希值冲突）。</li>
+<li>例如：散列函数为 $H(key) = key \% 11$。</li>
+<li>键值 <code>14</code> 和 <code>25</code> 是不同的键值（所以 <strong>A. 其键值相同</strong> 是错的），但它们的散列地址都是 <code>3</code>（$14\%11 = 3$，$25\%11 = 3$）。</li>
+<li>它们会被链接在同一个地址单元 <code>3</code> 后面的拉链表（同义词表）中。因此，它们的<strong>散列地址相同</strong>（选 <strong>C</strong>）。</li></ul></div>
+            </article>
+            
+            <article id="note-20" class="note-card">
+              <div class="note-num">20</div>
+              <div class="note-body"><p>队列允许插入的一段称为队尾 允许删除的一端称为队头</p></div>
+            </article>
+            
+            <article id="note-21" class="note-card">
+              <div class="note-num">21</div>
+              <div class="note-body"><p>后缀表达式处理括号与指数:指数转化为^运算符,括号自己安排顺序即可</p></div>
+            </article>
+            
+            <article id="note-22" class="note-card">
+              <div class="note-num">22</div>
+              <div class="note-body"><p>平衡二叉树的旋转操作</p>
+<h4>绝招一：考场终极秒杀法——“提拔中间人”</h4>
+<p>这个方法不需要你脑补任何旋转动作，只需要做<strong>大小排序</strong>。</p>
+<p>因为无论怎么旋转，二叉排序树的本质不会变：<strong>左子树 &lt; 根结点 &lt; 右子树</strong>。</p>
+<p>对于任何失衡的三个关键结点（失衡结点、它的孩子、它的孙子），它们一定能排出一个“老大、老二、老三”的顺序。<br><strong>旋转的终极目标，就是把“老二（中间值）”提拔为新根，老大放右边，老三放左边。</strong></p>
+<p>以你的题目为例，失衡处的三个结点是：<code>G</code>、<code>F</code>、<code>E</code>：</p>
+<ol><li><strong>排大小</strong>：根据二叉排序树的性质（左小右大），由于 <code>F</code> 是 <code>G</code> 的右孩子，<code>E</code> 是 <code>F</code> 的左孩子，我们可以得出它们的大小关系是：<br>$$G &lt; E &lt; F$$<br>*（$E$ 比 $G$ 大，但比 $F$ 小）*</li>
+<li><strong>提拔中间人</strong>：这三个数中，<strong><code>E</code> 是中间值（老二）</strong>。</li>
+<li><strong>直接画出结果</strong>：旋转后的局部结构必然是：<strong><code>E</code> 成为新根，小的 <code>G</code> 放左边，大的 <code>F</code> 放右边。</strong></li></ol>
+<pre><code>原结构 (RL型)：        秒杀结果：
+     G (小)                 E (中)
+      \                    / \
+       F (大)            G(小) F(大)
+      /
+     E (中)</code></pre>
+<p>不论是 LL、RR、LR 还是 RL，这个“<strong>提拔中间人</strong>”的规则 $100\%$ 适用，考场上用它来画最终结果，只需 3 秒钟。</p>
+<hr>
+<h4>绝招二：直观物理记忆法——“拉直与下坠”</h4>
+<p>如果你在考试中被要求写出<strong>“旋转过程的文字描述”</strong>，可以用下面这个物理模型来记忆：</p>
+<p>我们将失衡的形状分为两种：<strong>“直线型”</strong> 和 <strong>“折线型”</strong>。</p>
+<h5>1. 直线型（LL 型 或 RR 型）—— 只需要“拉一把”</h5>
+<p>想象这三个结点是一根挂在空中的绳子。</p>
+<ul><li><strong>LL 型（一路向左倾斜）</strong>：就像绳子往左边倒了。</li>
+<li><strong>动作</strong>：用手捏住中间的结点，向上提；原来的根结点因为重力，<strong>向右下坠</strong>。</li>
+<li><strong>RR 型（一路向右倾斜）</strong>：绳子往右边倒了。</li>
+<li><strong>动作</strong>：用手捏住中间的结点，向上提；原来的根结点因为重力，<strong>向左下坠</strong>。</li></ul>
+<pre><code>    (根) A              (提拔B，A往右下坠)          B
+        /                                         / \
+       B   &lt;-- 捏住这里提上去                      C   A
+      /
+     C</code></pre>
+<h5>2. 折线型（LR 型 或 RL 型）—— “先拉直，再下坠”</h5>
+<p>折线型因为“打折”了，没法直接提。必须分两步：</p>
+<ul><li><strong>第一步：拉直（对孩子旋转）</strong></li>
+<li>以你的题目 <strong>RL型</strong>（<code>G -&gt; F -&gt; E</code>，往右再往左折）为例：</li>
+<li>下半部分 <code>F -&gt; E</code> 是弯的，我们先揪住最底下的 <code>E</code> 往右边一拽，把它<strong>拉直</strong>成一条直直向右的线（<code>G -&gt; E -&gt; F</code>）。</li>
+<li>这就是文字描述中的：<strong>对右孩子 F 进行“右单旋”</strong>。</li></ul>
+<pre><code>      G                       G
+       \       拉直下半部分     \
+        F   --------------&gt;     E
+       /                         \
+      E                           F  (拉直成了标准的 RR 型)</code></pre>
+<ul><li><strong>第二步：下坠（对根旋转）</strong></li>
+<li>现在绳子已经变直了（<code>G -&gt; E -&gt; F</code>，一路向右倾斜）。</li>
+<li>我们按照“直线型”的方法：捏住中间的 <code>E</code> 往上一提，原来的根 <code>G</code> 顺势<strong>向左下坠</strong>。</li>
+<li>这就是文字描述中的：<strong>对根结点 G 进行“左单旋”</strong>。</li></ul>
+<pre><code>      G                                E
+       \       捏住E上提，G左下坠        / \
+        E   ---------------------&gt;   G   F
+         \
+          F</code></pre></div>
+            </article>
+            
+            <article id="note-23" class="note-card">
+              <div class="note-num">23</div>
+              <div class="note-body"><p>在考场上，<strong>单纯靠“人脑模拟代码流程”确实极其容易想歪</strong>。因为递归的调用栈很深，大脑在模拟回溯时负担很重，一旦在某个结点上直觉先行（比如觉得这棵树深度是4，而算出的数刚好也是4），就会陷入<strong>“证实偏差”</strong>，后面怎么看都觉得它是求深度的。</p>
+<p>其实，阅读二叉树的递归算法有非常强烈的<strong>“代码特征码（套路）”</strong>。不需要人脑模拟，只需掌握 <strong>“三步看穿法”</strong>，就能一眼识破算法的真实意图。</p>
+<h4>第一步：看“左右结合处的运算符”（决定大方向）</h4>
+<p>拿到代码，先不看具体的 <code>if-else</code>，直接找 <code>f(left)</code> 和 <code>f(right)</code> 之间是用什么连起来的：</p>
+<ol><li><strong>如果是加号 <code>+</code></strong> $\rightarrow$ <strong>一定是“计数”或“求和”类算法</strong>。</li></ol>
+<ul><li>因为只有计数才需要把左边算出来的数量，加上右边算出来的数量。</li></ul>
+<ol><li><strong>如果是 <code>max</code>（或 <code>&gt;?</code> 或 三目运算符比较大小）</strong> $\rightarrow$ <strong>一定是“求高度/深度”或“求最值”类算法</strong>。</li></ol>
+<ul><li>因为高度取决于左右子树中更深的那一个。</li></ul>
+<ol><li><strong>如果是逻辑运算符 <code>&amp;&amp;</code> 或 <code>||</code></strong> $\rightarrow$ <strong>一定是“判断/判定”类算法</strong>。</li></ol>
+<ul><li>比如：判断两棵树是否相等、判断是否是平衡二叉树、判断是否是完全二叉树。</li></ul>
+<p>&gt; <strong>考场应用</strong>：这道题一看到 <code>f42(left) + f42(right)</code> 里的 <strong><code>+</code></strong>，在 1 秒钟内就应该排除“求深度”的可能，判定它是在<strong>“数个数”</strong>。</p>
+<h4>第二步：看“过滤条件”（决定目标是谁）</h4>
+<p>既然大方向是“数个数（计数）”，那它数的是什么结点的个数？直接去代码里找 <strong><code>+1</code></strong> 发生在哪里（哪个 <code>if</code> 语句触发了 <code>+1</code>）：</p>
+<p>二叉树只有三种结点的指标最常考：</p>
+<ol><li><strong>如果条件是 <code>!root-&gt;left &amp;&amp; !root-&gt;right</code></strong></li></ol>
+<ul><li>$\rightarrow$ 数的是<strong>叶子结点（度为 0 的结点）</strong>个数。</li></ul>
+<ol><li><strong>如果条件是 <code>(left &amp;&amp; !right) || (!left &amp;&amp; right)</code></strong></li></ol>
+<ul><li>$\rightarrow$ 数的是<strong>单分支结点（度为 1 的结点）</strong>个数。</li></ul>
+<ol><li><strong>如果条件是 <code>root-&gt;left &amp;&amp; root-&gt;right</code></strong></li></ol>
+<ul><li>$\rightarrow$ 数的是<strong>双分支结点（度为 2 的结点）</strong>个数。</li></ul>
+<ol><li><strong>没有条件，每层都 <code>+1</code>（即 <code>return d + 1</code> 始终执行）</strong></li></ol>
+<ul><li>$\rightarrow$ 数的是<strong>总结点个数</strong>。</li></ul>
+<ol><li><strong>条件是 <code>root-&gt;data == x</code></strong></li></ol>
+<ul><li>$\rightarrow$ 数的是<strong>值为 $x$ 的结点个数</strong>。</li></ul>
+<p>&gt; <strong>考场应用</strong>：这道题代码里写着 <code>if (tree-&gt;left &amp;&amp; tree-&gt;right) return d + 1;</code>，显然符合第 3 条。</p>
+<h4>第三步：看“空树边界”（验证猜想）</h4>
+<p>看第一行：<code>if (!tree) return 0;</code>。</p>
+<ul><li>如果是空树，返回 <code>0</code>。</li>
+<li>这完美符合“计数”的初始边界（没结点可数，自然是 0）。</li></ul>
+<p>\</p></div>
+            </article>
+            
+            <article id="note-24" class="note-card">
+              <div class="note-num">24</div>
+              <div class="note-body"><p>先序 中序 后序 知道哪几个可以确定该二叉树?<br>在数据结构考试中，这是一个非常经典的<strong>高频核心考点</strong>。</p>
+<p>一句话死记硬背的黄金法则：<strong>“必须包含中序遍历，才能唯一确定一棵二叉树。”</strong></p>
+<hr>
+<h4>一、 可以唯一确定的组合：</h4>
+<p>只要有<strong>中序</strong>，搭配另外任意一个遍历，就可以唯一确定一棵二叉树。</p>
+<ol><li><strong>先序（前序） + 中序</strong> （最常考）</li>
+<li><strong>后序 + 中序</strong> （最常考）</li>
+<li><strong>层序 + 中序</strong></li></ol>
+<hr>
+<h4>二、 不能唯一确定的组合：</h4>
+<ul><li><strong>先序 + 后序</strong> （<strong>绝对不能</strong>唯一确定！）</li>
+<li><strong>先序 + 层序</strong></li>
+<li><strong>后序 + 层序</strong></li></ul>
+<hr>
+<h4>💡 考场必背：为什么“先序 + 后序”不能唯一确定？</h4>
+<p>如果考卷上出现大题让你解释为什么，或者考查概念，你只需要画出下面这个<strong>最极端的 2 结点反例</strong>：</p>
+<p>假设一棵树有 <code>A</code>、<code>B</code> 两个结点：</p>
+<ul><li><strong>树 1</strong>（<code>B</code> 是 <code>A</code> 的左孩子）：</li></ul>
+<pre><code>          A
+         /
+        B</code></pre>
+<ul><li>先序序列：<code>A B</code></li>
+<li>后序序列：<code>B A</code></li></ul>
+<ul><li><strong>树 2</strong>（<code>B</code> 是 <code>A</code> 的右孩子）：</li></ul>
+<pre><code>        A
+         \
+          B</code></pre>
+<ul><li>先序序列：<code>A B</code></li>
+<li>后序序列：<code>B A</code></li></ul>
+<p>这两个二叉树的<strong>先序和后序完全一模一样</strong>，但一个是左斜树，一个是右斜树，形态完全不同。所以，<strong>只有先序和后序是无法确定唯一的二叉树的</strong>。</p>
+<p>（*注：先序决定了“谁是根”，而后序决定了“谁是子树”，但它们都没法区分这个子树到底是“左子树”还是“右子树”；只有中序能用左、右关系强行把它们划分开来。*）</p></div>
+            </article>
+            
+            <article id="note-25" class="note-card">
+              <div class="note-num">25</div>
+              <div class="note-body"><p>稀疏矩阵的压缩存储<br><figure class="note-image"><a href="image-29.png" target="_blank"><img src="image-29.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-30.png" target="_blank"><img src="image-30.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-31.png" target="_blank"><img src="image-31.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-26" class="note-card">
+              <div class="note-num">26</div>
+              <div class="note-body"><p>求最短路径两大算法: Djikstra Floyd</p>
+<p>为了让你在考试中能够流畅地写出大题的每一步步骤（比如手动填表、画出状态转移过程），下面我们不作对比，<strong>纯粹从算法的“执行流程（状态变化）”来精细拆解这两个算法</strong>。</p>
+<hr>
+<h4>一、 迪杰斯特拉（Dijkstra）算法的执行流程</h4>
+<p>Dijkstra 的核心流程可以概括为：<strong>“选矮子 $\to$ 锁死它 $\to$ 借它搭桥往外探”</strong>。</p>
+<h5>1. 算法依赖的三个辅助工具（考试填表大题的核心）</h5>
+<p>在执行过程中，算法必须维护三个数组：</p>
+<ol><li><code>dist[i]</code>：源点（起点）到顶点 $i$ 的<strong>当前已知最短距离</strong>。</li>
+<li><code>s[i]</code>：标记数组（布尔值），<code>true</code> 表示顶点 $i$ 的最短路径已经<strong>确定锁死</strong>；<code>false</code> 表示还在探索中。</li>
+<li><code>path[i]</code>：前驱数组，记录到达顶点 $i$ 的<strong>前一个顶点</strong>（用来输出最终路径）。</li></ol>
+<hr>
+<h5>2. 详细执行步骤（以源点为 $v_0$ 为例）</h5>
+<h6><strong>【第一步：初始化】</strong></h6>
+<ul><li>将起点 $v_0$ 的 <code>dist[v_0]</code> 设为 <code>0</code>，<code>s[v_0]</code> 设为 <code>true</code>（直接锁死）。</li>
+<li>其他顶点的 <code>dist[i]</code> 初始化为：</li>
+<li>若 $v_0$ 与 $i$ 有直接边，则 <code>dist[i] = 边权值</code>。</li>
+<li>若无直接边，则 <code>dist[i] = ∞</code>。</li>
+<li>将所有非起点的 <code>s[i]</code> 设为 <code>false</code>。</li></ul>
+<h6><strong>【第二步：循环找点与更新】（此步需重复执行 $N-1$ 次，对应表格的每一行）</strong></h6>
+<p>在未锁死的顶点（即 <code>s[i] == false</code>）中，进行以下操作：</p>
+<ol><li><strong>【选点】</strong>：找出 <code>dist[i]</code> 值最小的顶点 $u$。（俗称“找目前离起点最近的未确定点”）。</li>
+<li><strong>【锁死】</strong>：将该顶点 $u$ 锁死，设置 <code>s[u] = true</code>。（此时，$v_0$ 到 $u$ 的最短路径已焊死，后面绝不更改）。</li>
+<li><strong>【松弛（更新邻居）】</strong>：以刚锁死的 $u$ 为中转站，检查 $u$ 的所有<strong>未锁死</strong>的邻居 $v$：</li></ol>
+<ul><li><strong>算一下新距离</strong>：起点到 $u$ 的距离 <code>dist[u]</code> + 边 <code>weight(u, v)</code> 的权值。</li>
+<li><strong>比大小</strong>：如果 <code>dist[u] + weight(u, v) &lt; dist[v]</code>：</li>
+<li><strong>更新它</strong>：<code>dist[v] = dist[u] + weight(u, v)</code>；</li>
+<li><strong>记下路</strong>：<code>path[v] = u</code>（表示到 $v$ 的路现在要经过 $u$）。</li></ul>
+<h6><strong>【第三步：算法结束】</strong></h6>
+<p>当所有的顶点都被锁死（<code>s</code> 全部为 <code>true</code>），算法结束。此时的 <code>dist</code> 数组就是源点到所有点的最短距离。</p>
+<hr>
+<h4>二、 弗洛伊德（Floyd）算法的执行流程</h4>
+<p>Floyd 的核心流程可以概括为：<strong>“插点法”</strong>。它通过<strong>逐个引入中间结点</strong>来不断刷新任意两点间的距离。</p>
+<h5>1. 算法依赖的两个矩阵</h5>
+<p>Floyd 算法整个执行过程中都在更新两个 $N \times N$ 的矩阵：</p>
+<ol><li><strong>距离矩阵 $D$</strong>：$D[i][j]$ 表示当前从顶点 $i$ 到 $j$ 的最短路径长度。</li>
+<li><strong>路径矩阵 $P$</strong>：$P[i][j]$ 记录从 $i$ 到 $j$ 经过的中间结点（用于重构路径）。</li></ol>
+<hr>
+<h5>2. 详细执行步骤</h5>
+<h6><strong>【第一步：初始矩阵 $D^{(-1)}$】</strong></h6>
+<ul><li>直接根据图的邻接矩阵建立初始矩阵 $D^{(-1)}$。</li>
+<li>$D[i][j]$ 的初始值为：</li>
+<li>若 $i = j$，则为 <code>0</code>（自己到自己）。</li>
+<li>若 $i$ 与 $j$ 有直接边，则为该边的权值。</li>
+<li>若无直接边，则为 <code>∞</code>。</li></ul>
+<h6><strong>【第二步：动态插入中间点（核心循环）】</strong></h6>
+<p>算法进行 $N$ 轮迭代。在第 $k$ 轮迭代中（$k$ 从 $0$ 变到 $N-1$），我们要<strong>允许顶点 $v_k$ 作为中转站</strong>。</p>
+<p>这时的代码结构是经典的三重循环：</p>
+<pre><code>for (int k = 0; k &lt; N; k++) {          // 外层：必须是允许插入的中间点 vk
+    for (int i = 0; i &lt; N; i++) {      // 中层：起点 vi
+        for (int j = 0; j &lt; N; j++) {  // 内层：终点 vj
+            
+            // 核心判断：如果经过 vk 中转比原来的直达更近
+            if (D[i][k] + D[k][j] &lt; D[i][j]) {
+                D[i][j] = D[i][k] + D[k][j];  // 刷新距离
+                P[i][j] = k;                  // 记录中间中转点
+            }
+            
+        }
+    }
+}</code></pre>
+<h6><strong>【第三步：如何理解这 $N$ 轮迭代的变化？】</strong></h6>
+<p>假设图有 A, B, C 三个点：</p>
+<ul><li><strong>第 1 轮迭代（$k=0$，引入 A）</strong>：</li>
+<li>全图扫描，看任意两点 $i$ 和 $j$，如果走 $i \to A \to j$ 比原直接路径短，就更新 $D[i][j]$。此时得到矩阵 $D^{(0)}$（表示<strong>只允许以 A 为中转站</strong>时的最短路径）。</li>
+<li><strong>第 2 轮迭代（$k=1$，引入 B）</strong>：</li>
+<li>在 $D^{(0)}$ 的基础上继续扫描，看如果走 $i \to B \to j$ 是不是更近。此时得到矩阵 $D^{(1)}$（表示<strong>允许以 A, B 为中转站</strong>时的最短路径）。</li>
+<li><strong>第 $N$ 轮迭代（引入所有点）</strong>：</li>
+<li>当最后一个顶点被允许作为中转站后，矩阵 $D^{(N-1)}$ 被计算出来。此时，矩阵中的每一个元素都是全局真正的最短距离。</li></ul>
+<hr>
+<h4>⚠️ 考试极其容易扣分的细节提醒：</h4>
+<ol><li><strong>Dijkstra 选点后的“锁死”步骤</strong>：<br>在大题手写步骤时，确定了当前最短的 <code>dist[u]</code> 之后，在下一步更新邻居前，<strong>一定要写明将 $u$ 加入到 <code>S</code> 集合中</strong>。有很多同学光顾着改数值，忘了写 <code>s[u]=true</code>。</li>
+<li><strong>Floyd 三重循环中 $k$ 必须在最外层</strong>：<br>如果考你 Floyd 的伪代码填空，<strong>最外层的循环变量必须是中转点 $k$</strong>。如果把 $i$ 或 $j$ 放在最外层，算法的逻辑就彻底废了，因为你必须保证在计算 $i \to j$ 之前，通过 $k$ 中转的所有可能性已经完全计算完毕。</li></ol></div>
+            </article>
+            
+            <article id="note-27" class="note-card">
+              <div class="note-num">27</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-32.png" target="_blank"><img src="image-32.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-28" class="note-card">
+              <div class="note-num">28</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-33.png" target="_blank"><img src="image-33.png" alt="alt text" loading="lazy"></a></figure><br>栈居然有最大容量上限 这个选C才是对的</p></div>
+            </article>
+            
+            <article id="note-29" class="note-card">
+              <div class="note-num">29</div>
+              <div class="note-body"><p>错题<figure class="note-image"><a href="image-34.png" target="_blank"><img src="image-34.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-30" class="note-card">
+              <div class="note-num">30</div>
+              <div class="note-body"><p>错题<figure class="note-image"><a href="image-35.png" target="_blank"><img src="image-35.png" alt="alt text" loading="lazy"></a></figure><br>   <figure class="note-image"><a href="image-36.png" target="_blank"><img src="image-36.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-31" class="note-card">
+              <div class="note-num">31</div>
+              <div class="note-body"><p>简单选择排序:直接交换 插入排序:插入,不是交换位置</p></div>
+            </article>
+            
+            <article id="note-32" class="note-card">
+              <div class="note-num">32</div>
+              <div class="note-body"><p>栈算法计算拓扑序列:<br>   <figure class="note-image"><a href="image-37.png" target="_blank"><img src="image-37.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-33" class="note-card">
+              <div class="note-num">33</div>
+              <div class="note-body"><p>循环队列:   元素个数: (rear-front+m)%m<br>               判断队列满:(rear+1)%m = front</p></div>
+            </article>
+            
+            <article id="note-34" class="note-card">
+              <div class="note-num">34</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-40.png" target="_blank"><img src="image-40.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-35" class="note-card">
+              <div class="note-num">35</div>
+              <div class="note-body"><p>查找方法对比</p>
+<h4>静态查找与动态查找方法比较表</h4>
+<div class="table-wrap"><table>
+<thead><tr><th>查找分类</th><th>查找方法</th><th>平均时间复杂度 (ASL)</th><th>最坏时间复杂度</th><th>辅助空间复杂度</th><th>存储结构与前提条件</th><th>优缺点及适用场景</th></tr></thead>
+<tbody>
+<tr><td><strong>静态查找</strong></td><td><strong>顺序查找</strong></td><td>$O(n)$&lt;br&gt;*(成功时 $ASL \approx \frac{n+1}{2}$)*</td><td>$O(n)$</td><td>$O(1)$</td><td>顺序表或链表均可；&lt;br&gt;对元素是否有序<strong>无要求</strong>。</td><td>算法最简单，但效率低；&lt;br&gt;适用于表长较小或无序的线性表。</td></tr>
+<tr><td><strong>静态查找</strong></td><td><strong>折半查找</strong> *(二分查找)*</td><td>$O(\log_2 n)$&lt;br&gt;*(成功时 $ASL \approx \log_2(n+1)-1$)*</td><td>$O(\log_2 n)$</td><td>$O(1)$&lt;br&gt;*(递归时为 $O(\log_2 n)$)*</td><td><strong>必须采用顺序存储</strong>（数组）；&lt;br&gt;<strong>元素必须按大小有序排列</strong>。</td><td>查找速度极快；&lt;br&gt;但不适合频繁插入和删除（因为要维护有序性）。</td></tr>
+<tr><td><strong>静态查找</strong></td><td><strong>分块查找</strong> *(索引顺序查找)*</td><td>$O(\sqrt{n})$&lt;br&gt;*(均匀分块且两级均顺序查找时，最佳 $ASL \approx \sqrt{n}+1$)*</td><td>$O(b+s)$&lt;br&gt;*($b$为块数，$s$为块内元素数)*</td><td>$O(b)$&lt;br&gt;*(需要额外建立一个大小为 $b$ 的索引表)*</td><td><strong>“块间有序，块内无序”</strong>；&lt;br&gt;索引表必须有序，块内可无序。</td><td>折中方案。既有较快的查找速度，&lt;br&gt;又比较方便进行块内的插入和删除。</td></tr>
+<tr><td><strong>动态查找</strong></td><td><strong>二叉排序树 (BST)</strong></td><td>$O(\log_2 n)$</td><td>$O(n)$&lt;br&gt;*(当树退化为单支树/链表时)*</td><td>$O(1)$&lt;br&gt;*(递归时为 $O(h)$， $h$为树高)*</td><td>二叉链表存储。</td><td>插入和删除非常快（无需移动大量元素）；&lt;br&gt;但查找性能不稳定，受输入序列顺序影响极大。</td></tr>
+<tr><td><strong>动态查找</strong></td><td><strong>平衡二叉树 (AVL)</strong></td><td>$O(\log_2 n)$</td><td>$O(\log_2 n)$&lt;br&gt;*(通过旋转强制维持树高平衡)*</td><td>$O(1)$&lt;br&gt;*(递归时为 $O(\log_2 n)$)*</td><td>二叉链表存储（结点需记录平衡因子）。</td><td>查找性能极高且非常稳定；&lt;br&gt;但在插入和删除时，需要通过旋转来维护平衡，有额外开销。</td></tr>
+</tbody></table></div>
+<p>还有个哈希查找, 时间复杂度为O(1).</p></div>
+            </article>
+            
+            <article id="note-36" class="note-card">
+              <div class="note-num">36</div>
+              <div class="note-body"><p>一些B-树:</p>
+<h4>⏱️ B-树考前极简速记卡</h4>
+<h5>1. 核心规律与特征</h5>
+<ul><li><strong>绝对平衡</strong>：所有叶子结点都在同一层。</li>
+<li><strong>基本规律</strong>：<strong>孩子数 = 关键字数 + 1</strong>。</li></ul>
+<h5>2. 数量范围约束（以 $m$ 阶为例）</h5>
+<p>*(极高频考点，记公式)*</p>
+<div class="table-wrap"><table>
+<thead><tr><th>结点类型</th><th>关键字（数字）个数范围</th><th>孩子（分叉）个数范围</th></tr></thead>
+<tbody>
+<tr><td><strong>根结点</strong></td><td>$1 \sim m-1$</td><td>$2 \sim m$</td></tr>
+<tr><td><strong>非根/非叶结点</strong></td><td><strong>$\lceil m/2 \rceil - 1 \sim m-1$</strong></td><td><strong>$\lceil m/2 \rceil \sim m$</strong></td></tr>
+</tbody></table></div>
+<p>*(5阶B树速算示例：$\lceil 5/2 \rceil = 3$。非根结点关键字范围为 $[2, 4]$ 个，孩子范围为 $[3, 5]$ 个。)*</p>
+<h5>3. 操作精髓</h5>
+<ul><li><strong>插入</strong>：永远只插在最底层叶子。数量超限（$&gt; m-1$）则<strong>分裂</strong>（中间数上提，左右分裂）。</li>
+<li><strong>删除</strong>：数量太少（低于下限）则进入饥荒：</li>
+<li><strong>借</strong>：兄弟富裕，通过父亲<strong>旋转</strong>借一个。</li>
+<li><strong>并</strong>：兄弟也穷，进行<strong>合并</strong>（我 + 夹在中间的父亲 + 兄弟 融合成一个）。</li></ul>
+<h5>4. B树 与 B+树 的终极区别</h5>
+<ul><li><strong>B-树</strong>：所有结点都存数据，叶子结点互不相连。</li>
+<li><strong>B+树</strong>：<strong>只有叶子结点存数据且链表相连</strong>（利于范围查询）；<strong>孩子数 = 关键字数</strong>。</li></ul></div>
+            </article>
+            
+            <article id="note-37" class="note-card">
+              <div class="note-num">37</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-41.png" target="_blank"><img src="image-41.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-38" class="note-card">
+              <div class="note-num">38</div>
+              <div class="note-body"><p>AOE网中的关键路径:它是从起点到终点“耗时最长”的路径，但它决定了整个项目“最快能完工”的时间（即最短工期）。</p></div>
+            </article>
+            
+            <article id="note-39" class="note-card">
+              <div class="note-num">39</div>
+              <div class="note-body"><p>*luminous*</p></div>
+            </article>
+            
+            <article id="note-40" class="note-card">
+              <div class="note-num">40</div>
+              <div class="note-body"><p>定义一个抽象数据类型<br>   <figure class="note-image"><a href="image-42.png" target="_blank"><img src="image-42.png" alt="alt text" loading="lazy"></a></figure><br>ADT需要有哪些功能? 满足&quot;生死读写&quot;的功能,再根据结构特点调整功能即可,比如栈的push pop,线性表getidx</p></div>
+            </article>
+            
+            <article id="note-41" class="note-card">
+              <div class="note-num">41</div>
+              <div class="note-body"><p>循环队列队满:(r + 1)%m = f<br>   队空: r=f<br>   循环队列元素个数: (r - f + m) % m</p></div>
+            </article>
+            
+            <article id="note-42" class="note-card">
+              <div class="note-num">42</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-43.png" target="_blank"><img src="image-43.png" alt="alt text" loading="lazy"></a></figure><br>画出树的结构如下：</p>
+<pre><code>        (33)
+       /    \
+     14     (19)
+           /    \
+          9     (10)
+               /    \
+              5     (5)
+                   /   \
+                  2     3</code></pre>
+<p>*(注：圆括号内为非叶子结点，其余为叶子结点)*</p>
+<hr>
+<h4>第二步：计算 WPL 的两种方法</h4>
+<h5>方法一：定义法（计算每个叶子结点的 权值 × 路径长度）</h5>
+<ul><li>叶子 <code>14</code> 的层数（路径长度）为 1 $\rightarrow 14 \times 1 = 14$</li>
+<li>叶子 <code>9</code> 的层数（路径长度）为 2 $\rightarrow 9 \times 2 = 18$</li>
+<li>叶子 <code>5</code> 的层数（路径长度）为 3 $\rightarrow 5 \times 3 = 15$</li>
+<li>叶子 <code>2</code> 的层数（路径长度）为 4 $\rightarrow 2 \times 4 = 8$</li>
+<li>叶子 <code>3</code> 的层数（路径长度）为 4 $\rightarrow 3 \times 4 = 12$</li></ul>
+<p>$$\text{WPL} = 14 + 18 + 15 + 8 + 12 = 67$$</p>
+<hr>
+<h5>方法二：考试提速大招（非叶子结点权值之和）⭐</h5>
+<p>在哈夫曼树中，<strong>带权路径长度（WPL）等于所有非叶子（分支）结点的权值之和</strong>。</p>
+<p>我们只需把合并过程中产生的<strong>所有新结点（非叶子结点）</strong>相加即可：</p>
+<ul><li>第一次产生的新结点：<code>5</code></li>
+<li>第二次产生的新结点：<code>10</code></li>
+<li>第三次产生的新结点：<code>19</code></li>
+<li>第四次产生的新结点：<code>33</code></li></ul>
+<p>$$\text{WPL} = 5 + 10 + 19 + 33 = 67$$</p></div>
+            </article>
+            
+            <article id="note-43" class="note-card">
+              <div class="note-num">43</div>
+              <div class="note-body"><p>hash表处理冲突的几种方法:<br><figure class="note-image"><a href="image-44.png" target="_blank"><img src="image-44.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-45.png" target="_blank"><img src="image-45.png" alt="alt text" loading="lazy"></a></figure><br><figure class="note-image"><a href="image-46.png" target="_blank"><img src="image-46.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-44" class="note-card">
+              <div class="note-num">44</div>
+              <div class="note-body"><div class="image-row"><figure class="note-image"><a href="image-47.png" target="_blank"><img src="image-47.png" alt="alt text" loading="lazy"></a></figure></div></div>
+            </article>
+            
+            <article id="note-45" class="note-card">
+              <div class="note-num">45</div>
+              <div class="note-body"><p>算法可以没有输入 但是必须有输出</p></div>
+            </article>
+            
+            <article id="note-46" class="note-card">
+              <div class="note-num">46</div>
+              <div class="note-body"><p>还是旋转:太理解了！教科书上那种“以某某为轴左旋转”、“顺时针/逆时针”的说法确实非常反人类。考试时间本来就紧，在草稿纸上转来转去极易转晕、转错。</p>
+<p>为了明天顺利通关，我教你一套<strong>根本不需要任何空间想象力、纯靠大小排序的“傻瓜式解题大招”</strong>。</p>
+<p>这套方法叫：<strong>“中间数提拉法”</strong>。</p>
+<hr>
+<h4>第一步：找出“惹祸”的三个结点（三叉排序法）</h4>
+<p>不管是什么 LL、RR、LR、RL，导致树不平衡的永远只有<strong>三个结点</strong>：</p>
+<ul><li><strong>A</strong>：不平衡的那个祖先结点（平衡因子变成 2 或 -2 的那个）。</li>
+<li><strong>B</strong>：它的儿子。</li>
+<li><strong>C</strong>：它的孙子（新插入的那一边）。</li></ul>
+<p>比如你刚才错的那一步，这三个结点就是：<code>7</code>、<code>5</code>、<code>6</code>。</p>
+<hr>
+<h4>第二步：不用旋转，直接写出“最终平衡形态”</h4>
+<p>把这三个数按大小排个序：<br>$$5 &lt; 6 &lt; 7$$</p>
+<ul><li><strong>无脑规则</strong>：</li>
+<li><strong>中间那个数（6）</strong> 永远当老大（子树的根）。</li>
+<li><strong>最小的那个数（5）</strong> 永远在左边。</li>
+<li><strong>最大的那个数（7）</strong> 永远在右边。</li></ul>
+<p>所以，最后的平衡形态必定是：</p>
+<pre><code>    6
+   / \
+  5   7</code></pre>
+<p><strong>不需要想象任何旋转，直接按大小把中间的数提上去就行了！</strong></p>
+<hr>
+<h4>第三步：怎么画“中间过渡状态”？（专治 LR / RL）</h4>
+<p>如果是 <strong>LL 型</strong>或 <strong>RR 型</strong>（本来就是一条直线），是不需要中间状态的，一步到位。<br>只有 <strong>LR 型</strong>和 <strong>RL 型</strong>（折线型）才需要画出中间状态。</p>
+<p>怎么画中间状态？同样不需要想象，直接记公式：</p>
+<h5>情况 1：LR 型（先左后右折线，如 7 -&gt; 5 -&gt; 6）</h5>
+<ul><li><strong>无脑公式</strong>：中间状态一定是<strong>向左倾斜的直线（LL型）</strong>。</li>
+<li><strong>怎么画</strong>：按大小，最大的在最上面，中间的在中间，最小的在最下面。</li></ul>
+<pre><code>      最大 (7)
+      /
+    中间 (6)
+    /
+  最小 (5)</code></pre>
+<p>*(你刚才就是这里画错了一条线的方向，只要记住 LR 的中间态一定是“纯左斜线”即可。)*</p>
+<h5>情况 2：RL 型（先右后左折线，如 5 -&gt; 7 -&gt; 6）</h5>
+<ul><li><strong>无脑公式</strong>：中间状态一定是<strong>向右倾斜的直线（RR型）</strong>。</li>
+<li><strong>怎么画</strong>：按大小，最小的在最上面，中间的在中间，最大的在最下面。</li></ul>
+<pre><code>  最小 (5)
+    \
+    中间 (6)
+      \
+      最大 (7)</code></pre>
+<hr>
+<h4>第四步：如果这三个结点还拖着其他“油瓶”（子树）怎么办？</h4>
+<p>考试时，有时这三个结点底下还挂着别的子树。<br>旋转完之后，这些子树该挂在哪里？</p>
+<ul><li><strong>无脑口诀：谁没位置了，就按“左小右大”的二叉排序树规则，塞进空位里。</strong></li></ul>
+<p>比如，<code>6</code> 升级当了老大，<code>5</code> 变成了 <code>6</code> 的左孩子，<code>7</code> 变成了 <code>6</code> 的右孩子。</p>
+<ul><li>如果原本 <code>6</code> 还有一个左子树 $T_1$，因为 $5 &lt; T_1 &lt; 6$，所以 $T_1$ 只能挂在 <code>5</code> 的右边。</li>
+<li>如果原本 <code>6</code> 还有一个右子树 $T_2$，因为 $6 &lt; T_2 &lt; 7$，所以 $T_2$ 只能挂在 <code>7</code> 的左边。</li></ul>
+<hr>
+<h4>总结明天的解题流程：</h4>
+<ol><li>插入新结点。</li>
+<li>算平衡因子，找到最下面的那个不平衡结点 $A$。</li>
+<li>顺着新插入的方向，抓出 $A, B, C$ 三个数。</li>
+<li>把这三个数排序：小、中、大。</li>
+<li><strong>最终状态</strong>：直接画成 <code>中</code> 在上，<code>小</code> 在左，<code>大</code> 在右。</li>
+<li><strong>中间状态（如果是折线）</strong>：直接画成一根直棍子（小中大排好队）。</li></ol>
+<p>用这套方法，闭着眼睛都能写对，今晚可以睡个好觉了！</p></div>
+            </article>
+            
+            <article id="note-47" class="note-card">
+              <div class="note-num">47</div>
+              <div class="note-body"><p>有向无环图的关键路径的算法设计思路:<br>   <figure class="note-image"><a href="image-48.png" target="_blank"><img src="image-48.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-48" class="note-card">
+              <div class="note-num">48</div>
+              <div class="note-body"><p>n个结点的无向图中:<br>    使该图<strong>可以</strong>成为连通图的最小边数: n-1 即构建一个树<br>      使该图<strong>必然</strong>连通的最小边数: $(n-1)(n-2)/2 + 1$</p></div>
+            </article>
+            
+            <article id="note-49" class="note-card">
+              <div class="note-num">49</div>
+              <div class="note-body"><p>线索二叉树<br>    <figure class="note-image"><a href="image-49.png" target="_blank"><img src="image-49.png" alt="alt text" loading="lazy"></a></figure></p></div>
+            </article>
+            
+            <article id="note-50" class="note-card">
+              <div class="note-num">50</div>
+              <div class="note-body"><p>判断序列是不是堆? 计算下标即可. 2i 2i+1</p></div>
+            </article>
+            
+            <article id="note-51" class="note-card">
+              <div class="note-num">51</div>
+              <div class="note-body"><p><figure class="note-image"><a href="image-50.png" target="_blank"><img src="image-50.png" alt="alt text" loading="lazy"></a></figure><br>   答案应为C</p></div>
+            </article>
+            
+            <article id="note-52" class="note-card">
+              <div class="note-num">52</div>
+              <div class="note-body"><p>希尔排序的流程概述</p>
+<h4>问题 1：万一 $d$ 不是总元素个数 $n$ 的因数怎么办？</h4>
+<p><strong>答案：完全没有任何影响。分组依然正常进行，只不过有的组会多一个数，有的组会少一个数。</strong></p>
+<p>在希尔排序中，组与组之间的元素个数<strong>不一定非要相等</strong>。</p>
+<h5>🌰 举个例子：</h5>
+<p>假设有 <strong>10 个元素</strong>（下标 0 ~ 9），增量 $d = 3$（10 显然不能被 3 整除）。<br>我们依然每隔 3 个数划分为一组：</p>
+<ul><li><strong>第 0 组</strong>（下标 $0, 3, 6, 9$）：共有 <strong>4</strong> 个元素。</li>
+<li><strong>第 1 组</strong>（下标 $1, 4, 7$）：共有 <strong>3</strong> 个元素。</li>
+<li><strong>第 2 组</strong>（下标 $2, 5, 8$）：共有 <strong>3</strong> 个元素。</li></ul>
+<p><strong>操作方法一模一样</strong>：</p>
+<ol><li>第 0 组（4个数）自己在组内排好序，放回原位。</li>
+<li>第 1 组（3个数）自己在组内排好序，放回原位。</li>
+<li>第 2 组（3个数）自己在组内排好序，放回原位。</li></ol>
+<p>所以，不能整除是常态，不用担心，直接无脑往后数 $d$ 个隔空取数即可。</p>
+<hr>
+<h4>问题 2：第一趟之后的过程如何？</h4>
+<p>希尔排序之所以叫“缩小增量排序”，就是因为<strong>它的增量 $d$ 是每趟都在缩小的，直到最后一趟 $d=1$ 为止</strong>。</p>
+<h5>1. 增量 $d$ 是如何缩小的？</h5>
+<p>在期末考试中，增量序列通常有两类给法：</p>
+<ul><li><strong>第一种（题目直接给出）</strong>：比如题目会说“增量序列依次为 5, 3, 1”。</li>
+<li><strong>第二种（无脑折半法，最常见）</strong>：如果题目没给，默认下一趟的增量就是上一趟的<strong>一半（向下取整）</strong>。</li>
+<li>比如：第一趟 $d_1 = 5$，第二趟就是 $d_2 = \lfloor 5/2 \rfloor = 2$，第三趟就是 $d_3 = \lfloor 2/2 \rfloor = 1$。</li></ul>
+<h5>2. 后续每趟的操作细节（必须基于前一趟的结果）：</h5>
+<p><strong>最容易犯错的考点</strong>：<strong>第二趟排序，必须在第一趟排序出来的“新序列”基础上进行，绝对不能用原序列！</strong></p>
+<p>流程如下：</p>
+<ul><li><strong>第一趟</strong>：用 $d_1$ 对原序列分组并排序，得到新序列 $A_1$。</li>
+<li><strong>第二趟</strong>：用新增量 $d_2$ 对<strong>序列 $A_1$</strong> 进行分组并排序，得到新序列 $A_2$。</li>
+<li><strong>最后一趟（必须是 $d = 1$）</strong>：用 $d=1$ 对上一趟的结果进行<strong>直接插入排序</strong>。</li>
+<li>*为什么最后一趟是 $d=1$？* 因为 $d=1$ 就是不分组了，对全体进行一次普通的插入排序。</li>
+<li>*这有什么用？* 此时序列已经“基本有序”了，直接插入排序在“基本有序”的情况下时间复杂度接近 $O(n)$，速度极快。最后输出的就是完全有序的最终结果。</li></ul></div>
+            </article>
+            
+            <article id="note-53" class="note-card">
+              <div class="note-num">53</div>
+              <div class="note-body"></div>
+            </article>
+            
+      </section>
+
+      <section id="ppt-notes" class="panel">
+        <h2>PPT 图片笔记</h2>
+        <p class="muted">以下内容从 <strong>谨记.pptx</strong> 内嵌图片中按页提取；未改写内容。</p>
+        
+            <article class="ppt-slide">
+              <h3>PPT 第 1 页：C1 绪论 / C2 线性表 / C3 栈和队列 / C5 数组 / C6 树和二叉树</h3>
+              <div class="ppt-grid">
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_01_image1.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_01_image1.png" alt="PPT 第 1 页图片 1" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_02_image2.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_02_image2.png" alt="PPT 第 1 页图片 2" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_03_image3.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_03_image3.png" alt="PPT 第 1 页图片 3" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_04_image4.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_04_image4.png" alt="PPT 第 1 页图片 4" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_05_image5.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_05_image5.png" alt="PPT 第 1 页图片 5" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_06_image6.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_06_image6.png" alt="PPT 第 1 页图片 6" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_07_image7.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_07_image7.png" alt="PPT 第 1 页图片 7" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_08_image8.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_08_image8.png" alt="PPT 第 1 页图片 8" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_09_image9.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_09_image9.png" alt="PPT 第 1 页图片 9" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide01_10_image10.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide01_10_image10.png" alt="PPT 第 1 页图片 10" loading="lazy"></a>
+                </figure>
+                </div>
+            </article>
+            
+
+            <article class="ppt-slide">
+              <h3>PPT 第 2 页：C7 图</h3>
+              <div class="ppt-grid">
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_01_image11.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_01_image11.png" alt="PPT 第 2 页图片 1" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_02_image12.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_02_image12.png" alt="PPT 第 2 页图片 2" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_03_image13.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_03_image13.png" alt="PPT 第 2 页图片 3" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_04_image14.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_04_image14.png" alt="PPT 第 2 页图片 4" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_05_image15.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_05_image15.png" alt="PPT 第 2 页图片 5" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_06_image16.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_06_image16.png" alt="PPT 第 2 页图片 6" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_07_image17.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_07_image17.png" alt="PPT 第 2 页图片 7" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_08_image18.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_08_image18.png" alt="PPT 第 2 页图片 8" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_09_image19.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_09_image19.png" alt="PPT 第 2 页图片 9" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide02_10_image20.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide02_10_image20.png" alt="PPT 第 2 页图片 10" loading="lazy"></a>
+                </figure>
+                </div>
+            </article>
+            
+
+            <article class="ppt-slide">
+              <h3>PPT 第 3 页：C9 查找 C10 排序</h3>
+              <div class="ppt-grid">
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_01_image21.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_01_image21.png" alt="PPT 第 3 页图片 1" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_02_image22.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_02_image22.png" alt="PPT 第 3 页图片 2" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_03_image23.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_03_image23.png" alt="PPT 第 3 页图片 3" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_04_image24.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_04_image24.png" alt="PPT 第 3 页图片 4" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_05_image25.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_05_image25.png" alt="PPT 第 3 页图片 5" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_06_image26.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_06_image26.png" alt="PPT 第 3 页图片 6" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_07_image27.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_07_image27.png" alt="PPT 第 3 页图片 7" loading="lazy"></a>
+                </figure>
+                
+                <figure class="ppt-image">
+                  <a href="谨记整理_assets/pptx_images/slide03_08_image28.png" target="_blank"><img src="谨记整理_assets/pptx_images/slide03_08_image28.png" alt="PPT 第 3 页图片 8" loading="lazy"></a>
+                </figure>
+                </div>
+            </article>
+            
+      </section>
+    </div>
+  </main>
+</body>
+</html>
+
