@@ -60,11 +60,38 @@
       background: #fff;
       font-size: 14px;
     }
+    .toc-toggle {
+      position: fixed;
+      top: 92px;
+      left: 18px;
+      z-index: 20;
+      min-height: 34px;
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      line-height: 1.2;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+    .toc-toggle:hover {
+      background: var(--soft);
+    }
     main {
       display: grid;
       grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
       gap: 22px;
       padding: 24px 20px 72px;
+    }
+    body.toc-collapsed main {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 1320px;
+    }
+    body.toc-collapsed aside {
+      display: none;
     }
     aside {
       position: sticky;
@@ -282,7 +309,8 @@
   </header>
 
   <main class="wrap">
-    <aside>
+    <button id="toc-toggle" class="toc-toggle" type="button" aria-controls="toc-panel" aria-expanded="true">收起目录</button>
+    <aside id="toc-panel">
       <h2>原文条目</h2>
       <div class="toc">
         <a href="#note-1">1. 这种题怎么做? [图片]</a><a href="#note-2">2. [图片]</a><a href="#note-3">3. 二分查找:mid是向下取整.</a><a href="#note-4">4. [图片]</a><a href="#note-5">5. [图片]</a><a href="#note-6">6. [图片]</a><a href="#note-7">7. 队列中:</a><a href="#note-8">8. [图片]</a><a href="#note-9">9. [图片]</a><a href="#note-10">10. [图片]</a><a href="#note-11">11. [图片]</a><a href="#note-12">12. 树的三种存储结构</a><a href="#note-13">13. 生成树?</a><a href="#note-14">14. ### **$m$ 叉树的通用定理推导过程**</a><a href="#note-15">15. 在数据结构考试中，求解最小生成树（Minimum Spanning Tree, MST）最经典且...</a><a href="#note-16">16. 二叉排序树结点的删除:</a><a href="#note-17">17. [图片]</a><a href="#note-18">18. [图片]</a><a href="#note-19">19. [图片][图片]</a><a href="#note-20">20. 队列允许插入的一段称为队尾 允许删除的一端称为队头</a><a href="#note-21">21. 后缀表达式处理括号与指数:指数转化为^运算符,括号自己安排顺序即可</a><a href="#note-22">22. 平衡二叉树的旋转操作</a><a href="#note-23">23. 在考场上，**单纯靠“人脑模拟代码流程”确实极其容易想歪**。因为递归的调用栈很深，大脑在模拟回...</a><a href="#note-24">24. 先序 中序 后序 知道哪几个可以确定该二叉树?</a><a href="#note-25">25. 稀疏矩阵的压缩存储</a><a href="#note-26">26. 求最短路径两大算法: Djikstra Floyd</a><a href="#note-27">27. [图片]</a><a href="#note-28">28. [图片]</a><a href="#note-29">29. 错题[图片]</a><a href="#note-30">30. 错题[图片]</a><a href="#note-31">31. 简单选择排序:直接交换 插入排序:插入,不是交换位置</a><a href="#note-32">32. 栈算法计算拓扑序列:</a><a href="#note-33">33. 循环队列: 元素个数: (rear-front+m)%m</a><a href="#note-34">34. [图片]</a><a href="#note-35">35. 查找方法对比</a><a href="#note-36">36. 一些B-树:</a><a href="#note-37">37. [图片]</a><a href="#note-38">38. AOE网中的关键路径:它是从起点到终点“耗时最长”的路径，但它决定了整个项目“最快能完工”的时间...</a><a href="#note-39">39. *luminous*</a><a href="#note-40">40. 定义一个抽象数据类型</a><a href="#note-41">41. 循环队列队满:(r + 1)%m = f</a><a href="#note-42">42. [图片]</a><a href="#note-43">43. hash表处理冲突的几种方法:</a><a href="#note-44">44. [图片]</a><a href="#note-45">45. 算法可以没有输入 但是必须有输出</a><a href="#note-46">46. 还是旋转:太理解了！教科书上那种“以某某为轴左旋转”、“顺时针/逆时针”的说法确实非常反人类。考...</a><a href="#note-47">47. 有向无环图的关键路径的算法设计思路:</a><a href="#note-48">48. n个结点的无向图中:</a><a href="#note-49">49. 线索二叉树</a><a href="#note-50">50. 判断序列是不是堆? 计算下标即可. 2i 2i+1</a><a href="#note-51">51. [图片]</a><a href="#note-52">52. 希尔排序的流程概述</a><a href="#note-53">53. 空条目</a>
@@ -1224,6 +1252,25 @@
       </section>
     </div>
   </main>
+  <script>
+    (function () {
+      const button = document.getElementById('toc-toggle');
+      const collapsedClass = 'toc-collapsed';
+      const saved = localStorage.getItem('toc-collapsed') === 'true';
+
+      function setCollapsed(collapsed) {
+        document.body.classList.toggle(collapsedClass, collapsed);
+        button.textContent = collapsed ? '展开目录' : '收起目录';
+        button.setAttribute('aria-expanded', String(!collapsed));
+        localStorage.setItem('toc-collapsed', String(collapsed));
+      }
+
+      setCollapsed(saved);
+      button.addEventListener('click', function () {
+        setCollapsed(!document.body.classList.contains(collapsedClass));
+      });
+    })();
+  </script>
 </body>
 </html>
 
